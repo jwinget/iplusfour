@@ -1,0 +1,34 @@
+---
+title: Barplots in the style of Tufte
+author: Jason Winget
+date: '2019-01-19'
+slug: barplots-in-the-style-of-tufte
+categories:
+  - visualization
+tags:
+  - Tufte
+  - ggplot2
+image:
+  caption: ''
+  focal_point: ''
+---
+
+
+
+<p>Lately I’ve been referencing the classic Tufte book <a href="https://www.edwardtufte.com/tufte/books_vdqi">The Visual Display of Quantitative Information</a>. I don’t agree with <em>everything</em> tufte has to say, but some of his advice is fantastic.</p>
+<p>People who consume my results like bar charts, likely because they’re familiar from Excel. I’ve been working on some ggplot2 settings that generate beautiful barplots.</p>
+<p>Here it is:</p>
+<pre class="r"><code>library(ggplot2)
+library(viridisLite)
+library(dplyr)
+
+iris %&gt;%
+  group_by(Species) %&gt;%
+  summarize(mean.Sepal.Length = mean(Sepal.Length)) %&gt;%
+  ggplot(aes(x=Species, y=mean.Sepal.Length, fill=Species)) + geom_col() + 
+  theme(panel.background = element_rect(fill = NA),
+  panel.ontop = TRUE
+) + scale_x_discrete(breaks = NULL) + scale_fill_viridis_d()</code></pre>
+<p><img src="/post/2019-01-19-barplots-in-the-style-of-tufte_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>By unsetting the <code>panel.background</code> and adding the <code>panel.ontop</code> arguments in the <code>theme</code>, you get a very clean chart with white lines indicating the bar heights.</p>
+<p>I also only recently learned about the <code>geom_col</code> geom in ggplot2 which is like <code>geom_bar(stat="identity")</code> but nicer looking :)</p>
