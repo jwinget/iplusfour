@@ -1,0 +1,22 @@
+---
+title: Don't call it a comeback
+author: Jason Winget
+date: '2019-01-19'
+slug: don-t-call-it-a-comeback
+categories:
+  - Meta
+tags: []
+image:
+  caption: ''
+  focal_point: ''
+---
+
+
+
+<p>Inspired by <span class="citation">[@drob]</span>(<a href="https://twitter.com/drob" class="uri">https://twitter.com/drob</a>)’s excellent keynote at rstudio::conf 2019, I’m resurrecting my long-dead blog.</p>
+<p>Since I work mainly in <code>R</code> these days, I’ll be sharing useful code snippets, some #TidyTuesday exercises, and probably some other random thoughts along the way.</p>
+<p>One thing I learned from rstudio::conf is that no <code>R</code> material is complete without an <code>mtcars</code> graph, so here you go:</p>
+<pre class="r"><code>library(ggplot2)</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 3.5.1</code></pre>
+<pre class="r"><code>ggplot(mtcars, aes(x=disp, y=mpg)) + geom_point()</code></pre>
+<p><img src="/post/2019-01-19-don-t-call-it-a-comeback_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
