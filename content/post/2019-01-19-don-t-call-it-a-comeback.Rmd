@@ -11,7 +11,7 @@ image:
   focal_point: ''
 ---
 
-Inspired by [@drob](https://twitter.com/drob)'s excellent keynote at rstudio::conf 2019, I'm resurrecting my long-dead blog.
+Inspired by the excellent keynote by [@drob](https://twitter.com/drob) at rstudio::conf 2019, I'm resurrecting my long-dead blog.
 
 Since I work mainly in `R` these days, I'll be sharing useful code snippets, some #TidyTuesday exercises, and probably some other random thoughts along the way.
 
