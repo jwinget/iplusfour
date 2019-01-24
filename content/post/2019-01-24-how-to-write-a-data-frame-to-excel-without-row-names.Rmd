@@ -1,0 +1,57 @@
+---
+title: How to write a data frame to excel without row names in R?
+author: Jason Winget
+date: '2019-01-24'
+slug: how-to-write-a-data-frame-to-excel-without-row-names
+categories:
+  - I/O
+tags:
+  - tidy data
+  - excel
+image:
+  caption: ''
+  focal_point: ''
+---
+
+Got a question today about how to write a data frame to Excel without rownames. Seasoned R vets probably don't even blink at this, but it's the type of thing that I think a lot of new users struggle to overcome.
+
+Anyhow, here are my quick and simple solutions:
+
+The easiest is to write this to a CSV file, which will open in excel. You can use the following code to do this:
+
+```{r, echo=T, eval=F}
+# Install/load the readr package
+if(!require(readr)){
+    install.packages("readr")
+    library(readr)
+}
+
+# Write out the file
+write_csv(my.data.frame, “mytable.csv”)
+```
+
+Once again the `tidyverse` comes to the rescue. `write_csv` from the readr package never writes row names to the output file!
+
+Alternatively you could write directly to an excel document using `XLConnect`. This code would look more like the following:
+
+```{r, echo=T, eval=F}
+# Install/load the XLConnect package
+if(!require(XLConnect)){
+    install.packages("XLConnect ")
+    library(XLConnect)
+}
+
+# Create an output workbook
+wb <- loadWorkbook(“myfile.xlsx”, create=TRUE)
+
+# Create a sheet named results in the new workbook
+createSheet(wb, ‘results’)
+
+# Write your table to the sheet
+writeWorksheet(wb, my.data.frame, ‘results’)
+
+# Save the file
+saveWorkbook(wb)
+```
+
+There you have it, pretty easy once you know the tools. Keep being awesome!
