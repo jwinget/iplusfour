@@ -1,0 +1,44 @@
+---
+title: Using rmarkdown parameters to set title, author, and date
+author: Jason Winget
+date: '2019-01-25'
+slug: using-rmarkdown-parameters-to-set-title-author-and-date
+categories:
+  - Rmarkdown
+tags:
+  - parameterization
+  - reusable code
+image:
+  caption: ''
+  focal_point: ''
+---
+
+
+
+<p>Another quick tip today. I’m taking a look at a bunch of my Rmarkdown documents for places I can employ <a href="https://bookdown.org/yihui/rmarkdown/parameterized-reports.html">parameters</a>.</p>
+<p>For reports and other templates, you might want to parameterize the YAML header that defines the title, author, date, etc. Turns out this is more straightforward than I guessed. You just need to define the parameters near the top of the YAML, then assign them to the appropriate elements later on.</p>
+<p>Here’s an example header for a <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html">Xaringan</a> slide deck:</p>
+<pre class="yaml"><code>---
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      ratio: &#39;16:10&#39;
+      highlightStyle: solarized-light
+      highlightLines: true
+      countIncrementalSlides: false
+params:
+  title: &quot;&quot;
+  subtitle: &quot;&quot;
+  author: &quot;Jason Winget&quot;
+  date: &quot;`r Sys.Date()`&quot;
+
+title: &quot;`r params$title`&quot;
+subtitle: &quot;`r params$subtitle`&quot;
+author: &quot;`r params$author`&quot;
+date: &quot;`r params$date`&quot;
+---</code></pre>
+<p>When you use <code>knit_with_parameters()</code> to compile this document, it will pop up a shiny window where you can enter the values for this report.</p>
+<p>Even if you don’t change these too much, using parameters like this can be useful for a common template file or automating report generation.</p>
+<p>Be awesome today!</p>
