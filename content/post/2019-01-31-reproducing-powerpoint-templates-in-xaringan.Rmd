@@ -117,7 +117,7 @@ Let's start with the easy part, the fonts. This theme helpfully tells us that it
 
 Go to the open `myfonts.css` and add the following lines:
 
-```{css}
+```{r, eval=F, echo=T}
 @import url('https://fonts.googleapis.com/css?family=Abel');
 body { font-family: 'Abel', sans-serif; }
 ```
@@ -131,7 +131,7 @@ First let's fix the text and background image/colors. First I used a screenshot 
 
 I also used the color selector in [GIMP](https://www.gimp.org) to get the primary dark purple background color
 
-```{css}
+```{r, eval=F, echo=T}
 .remark-slide-content {
   background: url('background.png') #0F0027;
   background-size: contain;
@@ -155,11 +155,11 @@ a {
 
 Even with just these few rules we're already kind of close!
 
-`r knitr::include_graphics('first_css_pass.png')`
+![](img/first_css_pass.png)
 
 Let's move the slide numbers to the top right and make them orange. Still working in `mytemplate.css`:
 
-```{css}
+```{r, eval=F, echo=T}
 .remark-slide-number {
  position: absolute;
  top: 1em;
@@ -182,7 +182,7 @@ That should get you started with CSS. Let's clean up the title slide and wrap up
 
 Again, I took a screenshot of the title slide background and saved it as `title_bg.png` in the presentation folder. Then we just need to set some styles on the title:
 
-```{css}
+```{r, eval=F, echo=T}
 .title-slide {
   background: url('title_bg.png') #0F0027;
   background-size: contain;
@@ -202,7 +202,7 @@ Again, I took a screenshot of the title slide background and saved it as `title_
 }
 ```
 
-`r knitr::include_graphics('title_slide_themed.png')`
+![](img/title_slide_themed.png)
 
 ## Wrapping up
 

@@ -87,17 +87,13 @@ remotes::install_local(pkgpath)</code></pre>
 <p>OK, I don’t know what your departmental theme looks like, so I’m going to reproduce part of this <a href="https://www.slidescarnival.com/iago-free-presentation-template/3283">iago theme</a> just to give an example of how to go about it. Now we’re going to have to get our hands dirty with CSS, but usually you can go pretty far with a few simple rules.</p>
 <p>Let’s start with the easy part, the fonts. This theme helpfully tells us that it uses “Abel”, which is <a href="https://fonts.google.com/?query=abel">available on Google Fonts</a>.</p>
 <p>Go to the open <code>myfonts.css</code> and add the following lines:</p>
-<pre class="css"><code>@import url(&#39;https://fonts.googleapis.com/css?family=Abel&#39;);
+<pre class="r"><code>@import url(&#39;https://fonts.googleapis.com/css?family=Abel&#39;);
 body { font-family: &#39;Abel&#39;, sans-serif; }</code></pre>
-<style type="text/css">
-@import url('https://fonts.googleapis.com/css?family=Abel');
-body { font-family: 'Abel', sans-serif; }
-</style>
 <p>Save the file and refresh the slides in the browser. You should see that the fonts have all changed to Abel! One cool thing about CSS changes is that we don’t have to re-knit to see them. If you don’t see Abel fonts, make sure you’re connected to the internet and that you added the lines to the right <code>myfonts.css</code> file.</p>
 <p>OK, now let’s really get into it by working on <code>mytemplate.css</code>. One thing that helps <strong>a lot</strong> here is the <code>inspect</code> feature in Google Chrome. Press <kbd>Ctrl+Shift+I</kbd> in your browser to pull up this window. You can hover over the HTML to see where the display comes from.</p>
 <p>First let’s fix the text and background image/colors. First I used a screenshot (<kbd>Prt Scr</kbd>) and Paint to get a clean version of the background image. I saved this in the presentation folder as <code>background.png</code>. You might be able to save this straight out of your template. Next we edit <code>mytemplate.css</code>.</p>
 <p>I also used the color selector in <a href="https://www.gimp.org">GIMP</a> to get the primary dark purple background color</p>
-<pre class="css"><code>.remark-slide-content {
+<pre class="r"><code>.remark-slide-content {
   background: url(&#39;background.png&#39;) #0F0027;
   background-size: contain;
   background-repeat: no-repeat;
@@ -114,55 +110,27 @@ h1 {
 
 a {
   color: #ff8700
-}
-</code></pre>
-<style type="text/css">
-.remark-slide-content {
-  background: url('background.png') #0F0027;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right bottom;
-}
-
-body {
-  color: white;
-}
-
-h1 {
-  color: #ef007e;
-}
-
-a {
-  color: #ff8700
-}
-
-</style>
+}</code></pre>
 <p>Even with just these few rules we’re already kind of close!</p>
-<p><img src="first_css_pass.png" /><!-- --></p>
+<div class="figure">
+<img src="img/first_css_pass.png" />
+
+</div>
 <p>Let’s move the slide numbers to the top right and make them orange. Still working in <code>mytemplate.css</code>:</p>
-<pre class="css"><code>.remark-slide-number {
+<pre class="r"><code>.remark-slide-number {
  position: absolute;
  top: 1em;
  right: 1em;
  color: #ff8700;
  opacity: 1;
 }</code></pre>
-<style type="text/css">
-.remark-slide-number {
- position: absolute;
- top: 1em;
- right: 1em;
- color: #ff8700;
- opacity: 1;
-}
-</style>
 <p>To change the format to just show the current slide number, we have to edit the YAML header at the top of our presentation:</p>
 <pre class="yaml"><code>nature:
   slideNumberFormat: &quot;%current%&quot;</code></pre>
 <p>And re-knit to see the change, since we changed the Rmd.</p>
 <p>That should get you started with CSS. Let’s clean up the title slide and wrap up this blog post.</p>
 <p>Again, I took a screenshot of the title slide background and saved it as <code>title_bg.png</code> in the presentation folder. Then we just need to set some styles on the title:</p>
-<pre class="css"><code>.title-slide {
+<pre class="r"><code>.title-slide {
   background: url(&#39;title_bg.png&#39;) #0F0027;
   background-size: contain;
 }
@@ -179,26 +147,10 @@ a {
 .title-slide .remark-slide-number {
   display: none;
 }</code></pre>
-<style type="text/css">
-.title-slide {
-  background: url('title_bg.png') #0F0027;
-  background-size: contain;
-}
+<div class="figure">
+<img src="img/title_slide_themed.png" />
 
-.title-slide h1, .title-slide h2, .title-slide h3 {
-  font-weight: 100;
-  color: #ef007e;
-}
-
-.title-slide h1 {
-  font-size: 5rem;
-}
-
-.title-slide .remark-slide-number {
-  display: none;
-}
-</style>
-<p><img src="title_slide_themed.png" /><!-- --></p>
+</div>
 </div>
 <div id="wrapping-up" class="section level2">
 <h2>Wrapping up</h2>
