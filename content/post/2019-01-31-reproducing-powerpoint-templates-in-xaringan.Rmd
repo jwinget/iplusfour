@@ -12,7 +12,7 @@ image:
   focal_point: ''
 ---
 
-I recently read [this tweet](https://twitter.com/apreshill/status/1090686429967966209) from @apreshill that linked to [some slides by @datalorax](http://www.datalorax.com/talks/cascadia18/#1) covering how to make custom themes for [Xaringan](https://bookdown.org/yihui/rmarkdown/xaringan.html), my favorite Rmarkdown presentation package. They're really good slides and I highly recommend flipping through them.
+I recently read [this tweet](https://twitter.com/apreshill/status/1090686429967966209) from @apreshill that linked to [some slides by datalorax](http://www.datalorax.com/talks/cascadia18/#1) covering how to make custom themes for [Xaringan](https://bookdown.org/yihui/rmarkdown/xaringan.html), my favorite Rmarkdown presentation package. They're really good slides and I highly recommend flipping through them.
 
 @datalorax even has a package in development called `slidex` that converts the *content* of a PowerPoint to Rmarkdown, but what about the *theme*? I don't have a magic package to solve this issue, but I thought I'd outline some steps I use to re-create PowerPoint themes in Xaringan. This is useful if you have an organizational/departmental theme that you need to use, but would rather have the reproducibility and feature set of Rmarkdown/Xaringan.
 
@@ -155,7 +155,7 @@ a {
 
 Even with just these few rules we're already kind of close!
 
-![](img/first_css_pass.png)
+![](/img/first_css_pass.png)
 
 Let's move the slide numbers to the top right and make them orange. Still working in `mytemplate.css`:
 
@@ -202,7 +202,7 @@ Again, I took a screenshot of the title slide background and saved it as `title_
 }
 ```
 
-![](img/title_slide_themed.png)
+![](/img/title_slide_themed.png)
 
 ## Wrapping up
 

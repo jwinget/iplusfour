@@ -14,7 +14,7 @@ image:
 
 
 
-<p>I recently read <a href="https://twitter.com/apreshill/status/1090686429967966209">this tweet</a> from <span class="citation">@apreshill</span> that linked to <span class="citation">[some slides by @datalorax]</span>(<a href="http://www.datalorax.com/talks/cascadia18/#1" class="uri">http://www.datalorax.com/talks/cascadia18/#1</a>) covering how to make custom themes for <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html">Xaringan</a>, my favorite Rmarkdown presentation package. They’re really good slides and I highly recommend flipping through them.</p>
+<p>I recently read <a href="https://twitter.com/apreshill/status/1090686429967966209">this tweet</a> from <span class="citation">@apreshill</span> that linked to <a href="http://www.datalorax.com/talks/cascadia18/#1">some slides by datalorax</a> covering how to make custom themes for <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html">Xaringan</a>, my favorite Rmarkdown presentation package. They’re really good slides and I highly recommend flipping through them.</p>
 <p><span class="citation">@datalorax</span> even has a package in development called <code>slidex</code> that converts the <em>content</em> of a PowerPoint to Rmarkdown, but what about the <em>theme</em>? I don’t have a magic package to solve this issue, but I thought I’d outline some steps I use to re-create PowerPoint themes in Xaringan. This is useful if you have an organizational/departmental theme that you need to use, but would rather have the reproducibility and feature set of Rmarkdown/Xaringan.</p>
 <p>If you haven’t done so already, <a href="https://bookdown.org/yihui/rmarkdown/xaringan-start.html">follow the instructions to install Xaringan</a>.</p>
 <div id="create-a-package-to-hold-your-templates" class="section level2">
@@ -113,7 +113,7 @@ a {
 }</code></pre>
 <p>Even with just these few rules we’re already kind of close!</p>
 <div class="figure">
-<img src="img/first_css_pass.png" />
+<img src="/img/first_css_pass.png" />
 
 </div>
 <p>Let’s move the slide numbers to the top right and make them orange. Still working in <code>mytemplate.css</code>:</p>
@@ -148,7 +148,7 @@ a {
   display: none;
 }</code></pre>
 <div class="figure">
-<img src="img/title_slide_themed.png" />
+<img src="/img/title_slide_themed.png" />
 
 </div>
 </div>
