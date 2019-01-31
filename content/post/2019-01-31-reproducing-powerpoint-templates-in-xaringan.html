@@ -1,0 +1,210 @@
+---
+title: Reproducing PowerPoint templates in Xaringan
+author: Jason Winget
+date: '2019-01-31'
+slug: reproducing-powerpoint-templates-in-xaringan
+categories:
+  - Rmarkdown
+tags:
+  - xaringan
+image:
+  caption: ''
+  focal_point: ''
+---
+
+
+
+<p>I recently read <a href="https://twitter.com/apreshill/status/1090686429967966209">this tweet</a> from <span class="citation">@apreshill</span> that linked to <span class="citation">[some slides by @datalorax]</span>(<a href="http://www.datalorax.com/talks/cascadia18/#1" class="uri">http://www.datalorax.com/talks/cascadia18/#1</a>) covering how to make custom themes for <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html">Xaringan</a>, my favorite Rmarkdown presentation package. They’re really good slides and I highly recommend flipping through them.</p>
+<p><span class="citation">@datalorax</span> even has a package in development called <code>slidex</code> that converts the <em>content</em> of a PowerPoint to Rmarkdown, but what about the <em>theme</em>? I don’t have a magic package to solve this issue, but I thought I’d outline some steps I use to re-create PowerPoint themes in Xaringan. This is useful if you have an organizational/departmental theme that you need to use, but would rather have the reproducibility and feature set of Rmarkdown/Xaringan.</p>
+<p>If you haven’t done so already, <a href="https://bookdown.org/yihui/rmarkdown/xaringan-start.html">follow the instructions to install Xaringan</a>.</p>
+<div id="create-a-package-to-hold-your-templates" class="section level2">
+<h2>Create a package to hold your template(s)</h2>
+<p>Most departmental templates are going to have a small user base (maybe just you…), so they don’t really need to be contributed back to Xaringan. I think the best solution is to create a personal package to hold the templates which you can share within your organization as needed.</p>
+<pre class="r"><code>if (!require(usethis)) {install.packages(&#39;usethis&#39;)}
+library(usethis)
+
+# Change the path below for your file system
+pkgpath &lt;- &#39;E:/Code/mytemplates&#39;
+
+usethis::create_package(pkgpath)</code></pre>
+<p>This should create a package and open it in a new Rstudio session. Now we need to create the template directory structure. In the code below I’m giving the template the name <code>DeptPPT</code></p>
+<pre class="r"><code>if (!require(fs)) {install.packages(&#39;fs&#39;)}
+library(fs)
+
+fs::dir_create(paste0(pkgpath, &#39;/inst/rmarkdown/templates/DeptPPT/skeleton&#39;))</code></pre>
+<p>Now we need to create a skeleton Rmd file that will be the basis for the template. Here is a pretty simple Xaringan skeleton (sample text from <a href="http://www.catipsum.com/">Cat Ipsum</a>:</p>
+<pre class="markdown"><code>---
+title: &quot;PRESENTATION TITLE&quot;
+subtitle: &quot;SUBTITLE&quot;
+author: &quot;Jason Winget&quot;
+date: &quot;`r Sys.Date()`&quot;
+output:
+  xaringan::moon_reader:
+    css: [default, &#39;mytemplate.css&#39;, &#39;myfonts.css&#39;]
+    lib_dir: libs
+    nature:
+      ratio: &quot;16:9&quot;
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+# First slide title
+        
+Lion. Bombay tiger bobcat munchkin leopard cornish rex tom. Lion himalayan. Balinese bobcat malkin. Munchkin cheetah yet bengal kitten, so balinese . Birman siberian and american shorthair and tomcat. Siamese tomcat, ragdoll. Cheetah himalayan, for mouser and cornish rex. Manx malkin and british shorthair ocelot kitten puma. Kitten. Puma kitty persian and havana brown yet himalayan. Jaguar bombay manx so ocelot. Jaguar singapura. Lynx american shorthair, so bombay and singapura lion but ocelot so jaguar. 
+        
+---
+
+# Second slide title
+
+.pull-left[
+* Ragdoll bobcat russian blue
+* Ocelot himalayan yet burmese
+* Manx savannah for grimalkin and american bobtail
+]
+
+.pull-right[
+&gt; Cornish rex american bobtail sphynx for cornish rex so siamese, mouser and munchkin. Tomcat lynx, yet american bobtail cornish rex for balinese for russian blue so egyptian mau. Siberian ragdoll, for maine coon turkish angora. Russian blue mouser leopard and himalayan. Bombay bombay yet american bobtail maine coon.
+]</code></pre>
+<p>You should set up this skeleton with some standard structure that you often have in a presentation. Every presentation you create will start with whatever is in this file, so it’s very helpful to include a link to Xaringan docs and some simple examples of markdown/layout.</p>
+<p>For example, I like to include an R setup block that loads the <code>tidyverse</code>, <code>DT</code>, and other packages as well as sets <a href="https://yihui.name/knitr/options/">knitr chunk options</a>. Save this file as <code>skeleton.Rmd</code> in the <code>skeleton</code> directory we made above.</p>
+<p>Notice in the skeleton header we reference two css files: <code>mytemplate.css</code> and <code>myfonts.css</code>. Those will be where we create the style later. For now just create two empty files in the same directory as <code>skeleton.Rmd</code></p>
+<p>Next we need to create a <code>template.yaml</code> file in the folder named <code>DeptPPT</code> above (or whatever you’ve renamed it to). This is a simple file that just looks like the following:</p>
+<pre class="yaml"><code>name: Department PPT
+description: A recreation of the departmental PowerPoint template
+</code></pre>
+<p>Make sure to put a newline at the bottom of this file.</p>
+<p>This is the name that will show up in the Rstudio menus when you create a new document.</p>
+<p>OK, now let’s install our package.</p>
+<pre class="r"><code>if (!require(remotes)) {install.packages(&#39;remotes&#39;)}
+library(remotes)
+
+remotes::install_local(pkgpath)</code></pre>
+<p>Restart your R session <kbd>Ctrl+Shift+F10</kbd>, then go to <code>File &gt; New File&gt; R Markdown</code>, click “From Template” on the bottom left, then input a title and select a directory. Since the template has associated CSS files, it will create a new directory to hold itself. You should get a new tab in Rstudio containing a copy of the <code>skeleton.Rmd</code> file we made above.</p>
+<p>For now, just knit the skeleton and open it in a web browser. After knitting, open the <code>myfonts.css</code> and <code>mytemplate.css</code> files that are created in the new directory (not the empty files we made above).</p>
+</div>
+<div id="recreating-a-theme" class="section level2">
+<h2>Recreating a theme</h2>
+<p>OK, I don’t know what your departmental theme looks like, so I’m going to reproduce part of this <a href="https://www.slidescarnival.com/iago-free-presentation-template/3283">iago theme</a> just to give an example of how to go about it. Now we’re going to have to get our hands dirty with CSS, but usually you can go pretty far with a few simple rules.</p>
+<p>Let’s start with the easy part, the fonts. This theme helpfully tells us that it uses “Abel”, which is <a href="https://fonts.google.com/?query=abel">available on Google Fonts</a>.</p>
+<p>Go to the open <code>myfonts.css</code> and add the following lines:</p>
+<pre class="css"><code>@import url(&#39;https://fonts.googleapis.com/css?family=Abel&#39;);
+body { font-family: &#39;Abel&#39;, sans-serif; }</code></pre>
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css?family=Abel');
+body { font-family: 'Abel', sans-serif; }
+</style>
+<p>Save the file and refresh the slides in the browser. You should see that the fonts have all changed to Abel! One cool thing about CSS changes is that we don’t have to re-knit to see them. If you don’t see Abel fonts, make sure you’re connected to the internet and that you added the lines to the right <code>myfonts.css</code> file.</p>
+<p>OK, now let’s really get into it by working on <code>mytemplate.css</code>. One thing that helps <strong>a lot</strong> here is the <code>inspect</code> feature in Google Chrome. Press <kbd>Ctrl+Shift+I</kbd> in your browser to pull up this window. You can hover over the HTML to see where the display comes from.</p>
+<p>First let’s fix the text and background image/colors. First I used a screenshot (<kbd>Prt Scr</kbd>) and Paint to get a clean version of the background image. I saved this in the presentation folder as <code>background.png</code>. You might be able to save this straight out of your template. Next we edit <code>mytemplate.css</code>.</p>
+<p>I also used the color selector in <a href="https://www.gimp.org">GIMP</a> to get the primary dark purple background color</p>
+<pre class="css"><code>.remark-slide-content {
+  background: url(&#39;background.png&#39;) #0F0027;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+body {
+  color: white;
+}
+
+h1 {
+  color: #ef007e;
+}
+
+a {
+  color: #ff8700
+}
+</code></pre>
+<style type="text/css">
+.remark-slide-content {
+  background: url('background.png') #0F0027;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+body {
+  color: white;
+}
+
+h1 {
+  color: #ef007e;
+}
+
+a {
+  color: #ff8700
+}
+
+</style>
+<p>Even with just these few rules we’re already kind of close!</p>
+<p><img src="first_css_pass.png" /><!-- --></p>
+<p>Let’s move the slide numbers to the top right and make them orange. Still working in <code>mytemplate.css</code>:</p>
+<pre class="css"><code>.remark-slide-number {
+ position: absolute;
+ top: 1em;
+ right: 1em;
+ color: #ff8700;
+ opacity: 1;
+}</code></pre>
+<style type="text/css">
+.remark-slide-number {
+ position: absolute;
+ top: 1em;
+ right: 1em;
+ color: #ff8700;
+ opacity: 1;
+}
+</style>
+<p>To change the format to just show the current slide number, we have to edit the YAML header at the top of our presentation:</p>
+<pre class="yaml"><code>nature:
+  slideNumberFormat: &quot;%current%&quot;</code></pre>
+<p>And re-knit to see the change, since we changed the Rmd.</p>
+<p>That should get you started with CSS. Let’s clean up the title slide and wrap up this blog post.</p>
+<p>Again, I took a screenshot of the title slide background and saved it as <code>title_bg.png</code> in the presentation folder. Then we just need to set some styles on the title:</p>
+<pre class="css"><code>.title-slide {
+  background: url(&#39;title_bg.png&#39;) #0F0027;
+  background-size: contain;
+}
+
+.title-slide h1, .title-slide h2, .title-slide h3 {
+  font-weight: 100;
+  color: #ef007e;
+}
+
+.title-slide h1 {
+  font-size: 5rem;
+}
+
+.title-slide .remark-slide-number {
+  display: none;
+}</code></pre>
+<style type="text/css">
+.title-slide {
+  background: url('title_bg.png') #0F0027;
+  background-size: contain;
+}
+
+.title-slide h1, .title-slide h2, .title-slide h3 {
+  font-weight: 100;
+  color: #ef007e;
+}
+
+.title-slide h1 {
+  font-size: 5rem;
+}
+
+.title-slide .remark-slide-number {
+  display: none;
+}
+</style>
+<p><img src="title_slide_themed.png" /><!-- --></p>
+</div>
+<div id="wrapping-up" class="section level2">
+<h2>Wrapping up</h2>
+<p>Once you’re happy with the look, copy the images, <code>mytemplate.css</code> and <code>myfonts.css</code> files into their counterparts within the package we created at the beginning. You might also want to overwrite the content of <code>skeleton.Rmd</code> with any changes made, like the slide number formatting.</p>
+<p>You’ll also need to reinstall the package every time you update it.</p>
+<p>Whew, we made it! That ended up being kind of wordy, but it’s really not too challenging. Give it a try, and tweet me <span class="citation">@iplusfour</span> if you have any issues.</p>
+<p>Once you’re happy with the template, make sure to version control your package! You can easily add more Rmarkdown templates to the same package by creating new directories under <code>/inst/rmarkdown/templates</code>. I have some for detailed team reports, summary documents, etc.</p>
+<p>Stay awesome!</p>
+</div>
