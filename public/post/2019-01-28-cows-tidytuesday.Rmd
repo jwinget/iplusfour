@@ -1,0 +1,20 @@
+---
+title: 'COWS! #TidyTuesday'
+author: Jason Winget
+date: '2019-01-28'
+slug: cows-tidytuesday
+categories:
+  - TidyTuesday
+  - visualization
+  - Screencasts
+tags:
+  - ggplot2
+  - tidy data
+image:
+  caption: ''
+  focal_point: ''
+---
+
+In [this week's #TidyTuesday](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-01-29) screencast I explore some **cow facts**, using the `emojifont` package for custom symbols as plot points.
+
+<iframe width="853" height="480" src="https://www.youtube.com/embed/QFg8uDeh5-A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 3.3.0">
+  <meta name="generator" content="Hugo 0.53" />
+  <meta name="author" content="Jason Winget">
+
+  
+  
+  
+  
+    
+  
+  <meta name="description" content="I recently read this tweet from @apreshill that linked to some slides by datalorax covering how to make custom themes for Xaringan, my favorite Rmarkdown presentation package. They’re really good slides and I highly recommend flipping through them.
+@datalorax even has a package in development called slidex that converts the content of a PowerPoint to Rmarkdown, but what about the theme? I don’t have a magic package to solve this issue, but I thought I’d outline some steps I use to re-create PowerPoint themes in Xaringan.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://iplusfour.netlify.com/post/reproducing-powerpoint-templates-in-xaringan/">
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700|Roboto:400,400italic,700|Roboto+Mono">
+  
+
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+  
+  
+
+  
+  <link rel="alternate" href="https://iplusfour.netlify.com/index.xml" type="application/rss+xml" title="iplusfour">
+  <link rel="feed" href="https://iplusfour.netlify.com/index.xml" type="application/rss+xml" title="iplusfour">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="https://iplusfour.netlify.com/post/reproducing-powerpoint-templates-in-xaringan/">
+
+  
+  
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="twitter:site" content="@iplusfour">
+  <meta property="twitter:creator" content="@iplusfour">
+  
+  <meta property="og:site_name" content="iplusfour">
+  <meta property="og:url" content="https://iplusfour.netlify.com/post/reproducing-powerpoint-templates-in-xaringan/">
+  <meta property="og:title" content="Reproducing PowerPoint templates in Xaringan | iplusfour">
+  <meta property="og:description" content="I recently read this tweet from @apreshill that linked to some slides by datalorax covering how to make custom themes for Xaringan, my favorite Rmarkdown presentation package. They’re really good slides and I highly recommend flipping through them.
+@datalorax even has a package in development called slidex that converts the content of a PowerPoint to Rmarkdown, but what about the theme? I don’t have a magic package to solve this issue, but I thought I’d outline some steps I use to re-create PowerPoint themes in Xaringan."><meta property="og:image" content="https://iplusfour.netlify.com/img/portrait.jpg">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2019-01-31T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2019-01-31T00:00:00&#43;00:00">
+  
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#2962ff",
+          "text": "#fff"
+        },
+        "button": {
+          "background": "#fff",
+          "text": "#2962ff"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn more",
+        "href": "https://cookies.insites.com"
+      }
+    })});
+</script>
+
+
+  
+
+  <title>Reproducing PowerPoint templates in Xaringan | iplusfour</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" role="textbox" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">iplusfour</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#about">
+            
+            <span>Home</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link" href="/#publications_selected">
+            
+            <span>Publications</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Reproducing PowerPoint templates in Xaringan</h1>
+
+  
+
+  
+    
+
+<div class="article-metadata">
+
+  
+  
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Winget">
+  </span>
+  
+
+  <span class="article-date">
+    
+    <meta content="2019-01-31 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+    <time datetime="2019-01-31 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+      Jan 31, 2019
+    </time>
+  </span>
+  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Jason Winget">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    7 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder"></i>
+    
+    <a href="/categories/rmarkdown/">Rmarkdown</a>
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Reproducing%20PowerPoint%20templates%20in%20Xaringan&amp;url=https%3a%2f%2fiplusfour.netlify.com%2fpost%2freproducing-powerpoint-templates-in-xaringan%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fiplusfour.netlify.com%2fpost%2freproducing-powerpoint-templates-in-xaringan%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fiplusfour.netlify.com%2fpost%2freproducing-powerpoint-templates-in-xaringan%2f&amp;title=Reproducing%20PowerPoint%20templates%20in%20Xaringan"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fiplusfour.netlify.com%2fpost%2freproducing-powerpoint-templates-in-xaringan%2f&amp;title=Reproducing%20PowerPoint%20templates%20in%20Xaringan"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Reproducing%20PowerPoint%20templates%20in%20Xaringan&amp;body=https%3a%2f%2fiplusfour.netlify.com%2fpost%2freproducing-powerpoint-templates-in-xaringan%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+
+<p>I recently read <a href="https://twitter.com/apreshill/status/1090686429967966209">this tweet</a> from <span class="citation">@apreshill</span> that linked to <a href="http://www.datalorax.com/talks/cascadia18/#1">some slides by datalorax</a> covering how to make custom themes for <a href="https://bookdown.org/yihui/rmarkdown/xaringan.html">Xaringan</a>, my favorite Rmarkdown presentation package. They’re really good slides and I highly recommend flipping through them.</p>
+<p><span class="citation">@datalorax</span> even has a package in development called <code>slidex</code> that converts the <em>content</em> of a PowerPoint to Rmarkdown, but what about the <em>theme</em>? I don’t have a magic package to solve this issue, but I thought I’d outline some steps I use to re-create PowerPoint themes in Xaringan. This is useful if you have an organizational/departmental theme that you need to use, but would rather have the reproducibility and feature set of Rmarkdown/Xaringan.</p>
+<p>If you haven’t done so already, <a href="https://bookdown.org/yihui/rmarkdown/xaringan-start.html">follow the instructions to install Xaringan</a>.</p>
+<div id="create-a-package-to-hold-your-templates" class="section level2">
+<h2>Create a package to hold your template(s)</h2>
+<p>Most departmental templates are going to have a small user base (maybe just you…), so they don’t really need to be contributed back to Xaringan. I think the best solution is to create a personal package to hold the templates which you can share within your organization as needed.</p>
+<pre class="r"><code>if (!require(usethis)) {install.packages(&#39;usethis&#39;)}
+library(usethis)
+
+# Change the path below for your file system
+pkgpath &lt;- &#39;E:/Code/mytemplates&#39;
+
+usethis::create_package(pkgpath)</code></pre>
+<p>This should create a package and open it in a new Rstudio session. Now we need to create the template directory structure. In the code below I’m giving the template the name <code>DeptPPT</code></p>
+<pre class="r"><code>if (!require(fs)) {install.packages(&#39;fs&#39;)}
+library(fs)
+
+fs::dir_create(paste0(pkgpath, &#39;/inst/rmarkdown/templates/DeptPPT/skeleton&#39;))</code></pre>
+<p>Now we need to create a skeleton Rmd file that will be the basis for the template. Here is a pretty simple Xaringan skeleton (sample text from <a href="http://www.catipsum.com/">Cat Ipsum</a>:</p>
+<pre class="markdown"><code>---
+title: &quot;PRESENTATION TITLE&quot;
+subtitle: &quot;SUBTITLE&quot;
+author: &quot;Jason Winget&quot;
+date: &quot;`r Sys.Date()`&quot;
+output:
+  xaringan::moon_reader:
+    css: [default, &#39;mytemplate.css&#39;, &#39;myfonts.css&#39;]
+    lib_dir: libs
+    nature:
+      ratio: &quot;16:9&quot;
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+# First slide title
+        
+Lion. Bombay tiger bobcat munchkin leopard cornish rex tom. Lion himalayan. Balinese bobcat malkin. Munchkin cheetah yet bengal kitten, so balinese . Birman siberian and american shorthair and tomcat. Siamese tomcat, ragdoll. Cheetah himalayan, for mouser and cornish rex. Manx malkin and british shorthair ocelot kitten puma. Kitten. Puma kitty persian and havana brown yet himalayan. Jaguar bombay manx so ocelot. Jaguar singapura. Lynx american shorthair, so bombay and singapura lion but ocelot so jaguar. 
+        
+---
+
+# Second slide title
+
+.pull-left[
+* Ragdoll bobcat russian blue
+* Ocelot himalayan yet burmese
+* Manx savannah for grimalkin and american bobtail
+]
+
+.pull-right[
+&gt; Cornish rex american bobtail sphynx for cornish rex so siamese, mouser and munchkin. Tomcat lynx, yet american bobtail cornish rex for balinese for russian blue so egyptian mau. Siberian ragdoll, for maine coon turkish angora. Russian blue mouser leopard and himalayan. Bombay bombay yet american bobtail maine coon.
+]</code></pre>
+<p>You should set up this skeleton with some standard structure that you often have in a presentation. Every presentation you create will start with whatever is in this file, so it’s very helpful to include a link to Xaringan docs and some simple examples of markdown/layout.</p>
+<p>For example, I like to include an R setup block that loads the <code>tidyverse</code>, <code>DT</code>, and other packages as well as sets <a href="https://yihui.name/knitr/options/">knitr chunk options</a>. Save this file as <code>skeleton.Rmd</code> in the <code>skeleton</code> directory we made above.</p>
+<p>Notice in the skeleton header we reference two css files: <code>mytemplate.css</code> and <code>myfonts.css</code>. Those will be where we create the style later. For now just create two empty files in the same directory as <code>skeleton.Rmd</code></p>
+<p>Next we need to create a <code>template.yaml</code> file in the folder named <code>DeptPPT</code> above (or whatever you’ve renamed it to). This is a simple file that just looks like the following:</p>
+<pre class="yaml"><code>name: Department PPT
+description: A recreation of the departmental PowerPoint template
+</code></pre>
+<p>Make sure to put a newline at the bottom of this file.</p>
+<p>This is the name that will show up in the Rstudio menus when you create a new document.</p>
+<p>OK, now let’s install our package.</p>
+<pre class="r"><code>if (!require(remotes)) {install.packages(&#39;remotes&#39;)}
+library(remotes)
+
+remotes::install_local(pkgpath)</code></pre>
+<p>Restart your R session <kbd>Ctrl+Shift+F10</kbd>, then go to <code>File &gt; New File&gt; R Markdown</code>, click “From Template” on the bottom left, then input a title and select a directory. Since the template has associated CSS files, it will create a new directory to hold itself. You should get a new tab in Rstudio containing a copy of the <code>skeleton.Rmd</code> file we made above.</p>
+<p>For now, just knit the skeleton and open it in a web browser. After knitting, open the <code>myfonts.css</code> and <code>mytemplate.css</code> files that are created in the new directory (not the empty files we made above).</p>
+</div>
+<div id="recreating-a-theme" class="section level2">
+<h2>Recreating a theme</h2>
+<p>OK, I don’t know what your departmental theme looks like, so I’m going to reproduce part of this <a href="https://www.slidescarnival.com/iago-free-presentation-template/3283">iago theme</a> just to give an example of how to go about it. Now we’re going to have to get our hands dirty with CSS, but usually you can go pretty far with a few simple rules.</p>
+<p>Let’s start with the easy part, the fonts. This theme helpfully tells us that it uses “Abel”, which is <a href="https://fonts.google.com/?query=abel">available on Google Fonts</a>.</p>
+<p>Go to the open <code>myfonts.css</code> and add the following lines:</p>
+<pre class="r"><code>@import url(&#39;https://fonts.googleapis.com/css?family=Abel&#39;);
+body { font-family: &#39;Abel&#39;, sans-serif; }</code></pre>
+<p>Save the file and refresh the slides in the browser. You should see that the fonts have all changed to Abel! One cool thing about CSS changes is that we don’t have to re-knit to see them. If you don’t see Abel fonts, make sure you’re connected to the internet and that you added the lines to the right <code>myfonts.css</code> file.</p>
+<p>OK, now let’s really get into it by working on <code>mytemplate.css</code>.
+One thing that helps <strong>a lot</strong> here is the <code>inspect</code> feature in Google Chrome. Press <kbd>Ctrl+Shift+I</kbd> in your browser to pull up this window. You can hover over the HTML to see where the display comes from.</p>
+<p>First let’s fix the text and background image/colors. First I used a screenshot (<kbd>Prt Scr</kbd>) and Paint to get a clean version of the background image. I saved this in the presentation folder as <code>background.png</code>. You might be able to save this straight out of your template. Next we edit <code>mytemplate.css</code>.</p>
+<p>I also used the color selector in <a href="https://www.gimp.org">GIMP</a> to get the primary dark purple background color</p>
+<pre class="r"><code>.remark-slide-content {
+  background: url(&#39;background.png&#39;) #0F0027;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+body {
+  color: white;
+}
+
+h1 {
+  color: #ef007e;
+}
+
+a {
+  color: #ff8700
+}</code></pre>
+<p>Even with just these few rules we’re already kind of close!</p>
+<p><img src="/img/first_css_pass.png" /></p>
+<p>Let’s move the slide numbers to the top right and make them orange. Still working in <code>mytemplate.css</code>:</p>
+<pre class="r"><code>.remark-slide-number {
+ position: absolute;
+ top: 1em;
+ right: 1em;
+ color: #ff8700;
+ opacity: 1;
+}</code></pre>
+<p>To change the format to just show the current slide number, we have to edit the YAML header at the top of our presentation:</p>
+<pre class="yaml"><code>nature:
+  slideNumberFormat: &quot;%current%&quot;</code></pre>
+<p>And re-knit to see the change, since we changed the Rmd.</p>
+<p>That should get you started with CSS. Let’s clean up the title slide and wrap up this blog post.</p>
+<p>Again, I took a screenshot of the title slide background and saved it as <code>title_bg.png</code> in the presentation folder. Then we just need to set some styles on the title:</p>
+<pre class="r"><code>.title-slide {
+  background: url(&#39;title_bg.png&#39;) #0F0027;
+  background-size: contain;
+}
+
+.title-slide h1, .title-slide h2, .title-slide h3 {
+  font-weight: 100;
+  color: #ef007e;
+}
+
+.title-slide h1 {
+  font-size: 5rem;
+}
+
+.title-slide .remark-slide-number {
+  display: none;
+}</code></pre>
+<p><img src="/img/title_slide_themed.png" /></p>
+</div>
+<div id="wrapping-up" class="section level2">
+<h2>Wrapping up</h2>
+<p>Once you’re happy with the look, copy the images, <code>mytemplate.css</code> and <code>myfonts.css</code> files into their counterparts within the package we created at the beginning. You might also want to overwrite the content of <code>skeleton.Rmd</code> with any changes made, like the slide number formatting.</p>
+<p>You’ll also need to reinstall the package every time you update it.</p>
+<p>Whew, we made it! That ended up being kind of wordy, but it’s really not too challenging. Give it a try, and tweet me <span class="citation">@iplusfour</span> if you have any issues.</p>
+<p>Once you’re happy with the template, make sure to version control your package! You can easily add more Rmarkdown templates to the same package by creating new directories under <code>/inst/rmarkdown/templates</code>. I have some for detailed team reports, summary documents, etc.</p>
+<p>Stay awesome!</p>
+</div>
+
+    </div>
+
+    
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/xaringan/">xaringan</a>
+  
+</div>
+
+
+
+    
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  <img class="portrait mr-3" src="/img/portrait.jpg" itemprop="image" alt="Avatar">
+  
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/">Jason Winget</a></h5>
+    <h6 class="card-subtitle">Scientist</h6>
+    
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://twitter.com/iplusfour" target="_blank" rel="noopener">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://scholar.google.com/citations?user=uCmGx8YAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+          <i class="ai ai-google-scholar"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://github.com/jwinget" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+
+    
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
+<div class="container">
+  <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    &copy; Jason Winget 2019 &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" id="back_to_top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+</div>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+    
+    <script src="/js/mathjax-config.js"></script>
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha256-VsEqElsCHSGmnmHXGQzvoWjWwoznFSZc6hs7ARLRacQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_CHTML-full" integrity="sha256-GhM+5JHb6QUzOQPXSJLEWP7R73CbkisjzK5Eyij4U9w=" crossorigin="anonymous" async></script>
+      
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+    <script>
+      const search_index_filename = "/index.json";
+      const i18n = {
+        'placeholder': "Search...",
+        'results': "results found",
+        'no_results': "No results found"
+      };
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    <script src="/js/academic.min.07fbebbbf71b021c8836e1d7ecffa489.js"></script>
+
+    
+
+  </body>
+</html>
+

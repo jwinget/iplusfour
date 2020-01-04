@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on iplusfour</title>
+    <link>https://iplusfour.netlify.com/categories/</link>
+    <description>Recent content in Categories on iplusfour</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; Jason Winget 2019</copyright>
+    
+	<atom:link href="https://iplusfour.netlify.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>I/O</title>
+      <link>https://iplusfour.netlify.com/categories/i-o/</link>
+      <pubDate>Thu, 24 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/categories/i-o/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Meta</title>
+      <link>https://iplusfour.netlify.com/categories/meta/</link>
+      <pubDate>Sat, 19 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/categories/meta/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rmarkdown</title>
+      <link>https://iplusfour.netlify.com/categories/rmarkdown/</link>
+      <pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/categories/rmarkdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Screencasts</title>
+      <link>https://iplusfour.netlify.com/categories/screencasts/</link>
+      <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/categories/screencasts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TidyTuesday</title>
+      <link>https://iplusfour.netlify.com/categories/tidytuesday/</link>
+      <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/categories/tidytuesday/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>visualization</title>
+      <link>https://iplusfour.netlify.com/categories/visualization/</link>
+      <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/categories/visualization/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

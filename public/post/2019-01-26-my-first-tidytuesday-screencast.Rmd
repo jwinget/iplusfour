@@ -1,0 +1,22 @@
+---
+title: My first TidyTuesday & screencast!
+author: Jason Winget
+date: '2019-01-26'
+slug: my-first-tidytuesday-screencast
+categories:
+  - visualization
+  - TidyTuesday
+  - Screencasts
+tags:
+  - ggplot2
+  - tidy data
+image:
+  caption: ''
+  focal_point: ''
+---
+
+Like they say, long journeys start with a single step. This is my first time looking at a [#TidyTuesday](https://thomasmock.netlify.com/post/tidytuesday-a-weekly-social-data-project-in-r/) dataset and my first time doing an R screencast.
+
+This week's data is on incarceration in the US, and in just a short exploration I find some interesting features.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hY5GiFK3kPw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Screencasts on iplusfour</title>
+    <link>https://iplusfour.netlify.com/categories/screencasts/</link>
+    <description>Recent content in Screencasts on iplusfour</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; Jason Winget 2019</copyright>
+    <lastBuildDate>Mon, 28 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://iplusfour.netlify.com/categories/screencasts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>COWS! #TidyTuesday</title>
+      <link>https://iplusfour.netlify.com/post/cows-tidytuesday/</link>
+      <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/cows-tidytuesday/</guid>
+      <description>In this week’s #TidyTuesday screencast I explore some cow facts, using the emojifont package for custom symbols as plot points.
+</description>
+    </item>
+    
+    <item>
+      <title>Quick guide to setting up OBS studio</title>
+      <link>https://iplusfour.netlify.com/post/quick-guide-to-setting-up-obs-studio/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/quick-guide-to-setting-up-obs-studio/</guid>
+      <description>I got a little bit of interest in yesterday’s screencast for #TidyTuesday, so today I thought I’d give a simple guide to recording those screencasts with OBS studio.
+The text instructions are below and here’s a short video if you’re a visual learner.
+Download and install the softwareIn the lower left of the window under scenes, click + and create a new scene called screencastsUnder sources, click + and add a Display Capture.</description>
+    </item>
+    
+    <item>
+      <title>My first TidyTuesday &amp; screencast!</title>
+      <link>https://iplusfour.netlify.com/post/my-first-tidytuesday-screencast/</link>
+      <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/my-first-tidytuesday-screencast/</guid>
+      <description>Like they say, long journeys start with a single step. This is my first time looking at a #TidyTuesday dataset and my first time doing an R screencast.
+This week’s data is on incarceration in the US, and in just a short exploration I find some interesting features.
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TidyTuesday on iplusfour</title>
+    <link>https://iplusfour.netlify.com/categories/tidytuesday/</link>
+    <description>Recent content in TidyTuesday on iplusfour</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; Jason Winget 2019</copyright>
+    <lastBuildDate>Mon, 28 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://iplusfour.netlify.com/categories/tidytuesday/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>COWS! #TidyTuesday</title>
+      <link>https://iplusfour.netlify.com/post/cows-tidytuesday/</link>
+      <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/cows-tidytuesday/</guid>
+      <description>In this week’s #TidyTuesday screencast I explore some cow facts, using the emojifont package for custom symbols as plot points.
+</description>
+    </item>
+    
+    <item>
+      <title>My first TidyTuesday &amp; screencast!</title>
+      <link>https://iplusfour.netlify.com/post/my-first-tidytuesday-screencast/</link>
+      <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/my-first-tidytuesday-screencast/</guid>
+      <description>Like they say, long journeys start with a single step. This is my first time looking at a #TidyTuesday dataset and my first time doing an R screencast.
+This week’s data is on incarceration in the US, and in just a short exploration I find some interesting features.
+</description>
+    </item>
+    
+  </channel>
+</rss>

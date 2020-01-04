@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>iplusfour on iplusfour</title>
+    <link>https://iplusfour.netlify.com/</link>
+    <description>Recent content in iplusfour on iplusfour</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; Jason Winget 2019</copyright>
+    <lastBuildDate>Sun, 15 Oct 2017 00:00:00 -0400</lastBuildDate>
+    <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>RadventcalendaR - Just a bit late</title>
+      <link>https://iplusfour.netlify.com/post/radventcalendar-just-a-bit-late/</link>
+      <pubDate>Fri, 03 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/radventcalendar-just-a-bit-late/</guid>
+      <description>&lt;p&gt;In early December I came across an &lt;a href=&#34;https://kiirstio.wixsite.com/kowen/post/the-25-days-of-christmas-an-r-advent-calendar&#34; target=&#34;_blank&#34;&gt;R advent calendar&lt;/a&gt; for new users that was created by @KiirstiO, and decided it would be nice to do fairly short videos where I worked through the exercises in case folks got stuck.&lt;/p&gt;
+
+&lt;p&gt;Obviously the calendar is over now, but I think it&amp;rsquo;s still a nice, gentle introduction to R for anyone who might be new. Check out the source materials above, and my YouTube playlist can be found &lt;a href=&#34;https://www.youtube.com/watch?v=ms7u9jvkjNI&amp;amp;list=PLXjgHAp5I5UhV7nw1eY61_Uil68KhmBKe&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Reproducing PowerPoint templates in Xaringan</title>
+      <link>https://iplusfour.netlify.com/post/reproducing-powerpoint-templates-in-xaringan/</link>
+      <pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/reproducing-powerpoint-templates-in-xaringan/</guid>
+      <description>
+
+
+&lt;p&gt;I recently read &lt;a href=&#34;https://twitter.com/apreshill/status/1090686429967966209&#34;&gt;this tweet&lt;/a&gt; from &lt;span class=&#34;citation&#34;&gt;@apreshill&lt;/span&gt; that linked to &lt;a href=&#34;http://www.datalorax.com/talks/cascadia18/#1&#34;&gt;some slides by datalorax&lt;/a&gt; covering how to make custom themes for &lt;a href=&#34;https://bookdown.org/yihui/rmarkdown/xaringan.html&#34;&gt;Xaringan&lt;/a&gt;, my favorite Rmarkdown presentation package. They’re really good slides and I highly recommend flipping through them.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;citation&#34;&gt;@datalorax&lt;/span&gt; even has a package in development called &lt;code&gt;slidex&lt;/code&gt; that converts the &lt;em&gt;content&lt;/em&gt; of a PowerPoint to Rmarkdown, but what about the &lt;em&gt;theme&lt;/em&gt;? I don’t have a magic package to solve this issue, but I thought I’d outline some steps I use to re-create PowerPoint themes in Xaringan. This is useful if you have an organizational/departmental theme that you need to use, but would rather have the reproducibility and feature set of Rmarkdown/Xaringan.&lt;/p&gt;
+&lt;p&gt;If you haven’t done so already, &lt;a href=&#34;https://bookdown.org/yihui/rmarkdown/xaringan-start.html&#34;&gt;follow the instructions to install Xaringan&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;create-a-package-to-hold-your-templates&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Create a package to hold your template(s)&lt;/h2&gt;
+&lt;p&gt;Most departmental templates are going to have a small user base (maybe just you…), so they don’t really need to be contributed back to Xaringan. I think the best solution is to create a personal package to hold the templates which you can share within your organization as needed.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;if (!require(usethis)) {install.packages(&amp;#39;usethis&amp;#39;)}
+library(usethis)
+
+# Change the path below for your file system
+pkgpath &amp;lt;- &amp;#39;E:/Code/mytemplates&amp;#39;
+
+usethis::create_package(pkgpath)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This should create a package and open it in a new Rstudio session. Now we need to create the template directory structure. In the code below I’m giving the template the name &lt;code&gt;DeptPPT&lt;/code&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;if (!require(fs)) {install.packages(&amp;#39;fs&amp;#39;)}
+library(fs)
+
+fs::dir_create(paste0(pkgpath, &amp;#39;/inst/rmarkdown/templates/DeptPPT/skeleton&amp;#39;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we need to create a skeleton Rmd file that will be the basis for the template. Here is a pretty simple Xaringan skeleton (sample text from &lt;a href=&#34;http://www.catipsum.com/&#34;&gt;Cat Ipsum&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class=&#34;markdown&#34;&gt;&lt;code&gt;---
+title: &amp;quot;PRESENTATION TITLE&amp;quot;
+subtitle: &amp;quot;SUBTITLE&amp;quot;
+author: &amp;quot;Jason Winget&amp;quot;
+date: &amp;quot;`r Sys.Date()`&amp;quot;
+output:
+  xaringan::moon_reader:
+    css: [default, &amp;#39;mytemplate.css&amp;#39;, &amp;#39;myfonts.css&amp;#39;]
+    lib_dir: libs
+    nature:
+      ratio: &amp;quot;16:9&amp;quot;
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+# First slide title
+        
+Lion. Bombay tiger bobcat munchkin leopard cornish rex tom. Lion himalayan. Balinese bobcat malkin. Munchkin cheetah yet bengal kitten, so balinese . Birman siberian and american shorthair and tomcat. Siamese tomcat, ragdoll. Cheetah himalayan, for mouser and cornish rex. Manx malkin and british shorthair ocelot kitten puma. Kitten. Puma kitty persian and havana brown yet himalayan. Jaguar bombay manx so ocelot. Jaguar singapura. Lynx american shorthair, so bombay and singapura lion but ocelot so jaguar. 
+        
+---
+
+# Second slide title
+
+.pull-left[
+* Ragdoll bobcat russian blue
+* Ocelot himalayan yet burmese
+* Manx savannah for grimalkin and american bobtail
+]
+
+.pull-right[
+&amp;gt; Cornish rex american bobtail sphynx for cornish rex so siamese, mouser and munchkin. Tomcat lynx, yet american bobtail cornish rex for balinese for russian blue so egyptian mau. Siberian ragdoll, for maine coon turkish angora. Russian blue mouser leopard and himalayan. Bombay bombay yet american bobtail maine coon.
+]&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You should set up this skeleton with some standard structure that you often have in a presentation. Every presentation you create will start with whatever is in this file, so it’s very helpful to include a link to Xaringan docs and some simple examples of markdown/layout.&lt;/p&gt;
+&lt;p&gt;For example, I like to include an R setup block that loads the &lt;code&gt;tidyverse&lt;/code&gt;, &lt;code&gt;DT&lt;/code&gt;, and other packages as well as sets &lt;a href=&#34;https://yihui.name/knitr/options/&#34;&gt;knitr chunk options&lt;/a&gt;. Save this file as &lt;code&gt;skeleton.Rmd&lt;/code&gt; in the &lt;code&gt;skeleton&lt;/code&gt; directory we made above.&lt;/p&gt;
+&lt;p&gt;Notice in the skeleton header we reference two css files: &lt;code&gt;mytemplate.css&lt;/code&gt; and &lt;code&gt;myfonts.css&lt;/code&gt;. Those will be where we create the style later. For now just create two empty files in the same directory as &lt;code&gt;skeleton.Rmd&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Next we need to create a &lt;code&gt;template.yaml&lt;/code&gt; file in the folder named &lt;code&gt;DeptPPT&lt;/code&gt; above (or whatever you’ve renamed it to). This is a simple file that just looks like the following:&lt;/p&gt;
+&lt;pre class=&#34;yaml&#34;&gt;&lt;code&gt;name: Department PPT
+description: A recreation of the departmental PowerPoint template
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Make sure to put a newline at the bottom of this file.&lt;/p&gt;
+&lt;p&gt;This is the name that will show up in the Rstudio menus when you create a new document.&lt;/p&gt;
+&lt;p&gt;OK, now let’s install our package.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;if (!require(remotes)) {install.packages(&amp;#39;remotes&amp;#39;)}
+library(remotes)
+
+remotes::install_local(pkgpath)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Restart your R session &lt;kbd&gt;Ctrl+Shift+F10&lt;/kbd&gt;, then go to &lt;code&gt;File &amp;gt; New File&amp;gt; R Markdown&lt;/code&gt;, click “From Template” on the bottom left, then input a title and select a directory. Since the template has associated CSS files, it will create a new directory to hold itself. You should get a new tab in Rstudio containing a copy of the &lt;code&gt;skeleton.Rmd&lt;/code&gt; file we made above.&lt;/p&gt;
+&lt;p&gt;For now, just knit the skeleton and open it in a web browser. After knitting, open the &lt;code&gt;myfonts.css&lt;/code&gt; and &lt;code&gt;mytemplate.css&lt;/code&gt; files that are created in the new directory (not the empty files we made above).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;recreating-a-theme&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Recreating a theme&lt;/h2&gt;
+&lt;p&gt;OK, I don’t know what your departmental theme looks like, so I’m going to reproduce part of this &lt;a href=&#34;https://www.slidescarnival.com/iago-free-presentation-template/3283&#34;&gt;iago theme&lt;/a&gt; just to give an example of how to go about it. Now we’re going to have to get our hands dirty with CSS, but usually you can go pretty far with a few simple rules.&lt;/p&gt;
+&lt;p&gt;Let’s start with the easy part, the fonts. This theme helpfully tells us that it uses “Abel”, which is &lt;a href=&#34;https://fonts.google.com/?query=abel&#34;&gt;available on Google Fonts&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Go to the open &lt;code&gt;myfonts.css&lt;/code&gt; and add the following lines:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;@import url(&amp;#39;https://fonts.googleapis.com/css?family=Abel&amp;#39;);
+body { font-family: &amp;#39;Abel&amp;#39;, sans-serif; }&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Save the file and refresh the slides in the browser. You should see that the fonts have all changed to Abel! One cool thing about CSS changes is that we don’t have to re-knit to see them. If you don’t see Abel fonts, make sure you’re connected to the internet and that you added the lines to the right &lt;code&gt;myfonts.css&lt;/code&gt; file.&lt;/p&gt;
+&lt;p&gt;OK, now let’s really get into it by working on &lt;code&gt;mytemplate.css&lt;/code&gt;.
+One thing that helps &lt;strong&gt;a lot&lt;/strong&gt; here is the &lt;code&gt;inspect&lt;/code&gt; feature in Google Chrome. Press &lt;kbd&gt;Ctrl+Shift+I&lt;/kbd&gt; in your browser to pull up this window. You can hover over the HTML to see where the display comes from.&lt;/p&gt;
+&lt;p&gt;First let’s fix the text and background image/colors. First I used a screenshot (&lt;kbd&gt;Prt Scr&lt;/kbd&gt;) and Paint to get a clean version of the background image. I saved this in the presentation folder as &lt;code&gt;background.png&lt;/code&gt;. You might be able to save this straight out of your template. Next we edit &lt;code&gt;mytemplate.css&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I also used the color selector in &lt;a href=&#34;https://www.gimp.org&#34;&gt;GIMP&lt;/a&gt; to get the primary dark purple background color&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;.remark-slide-content {
+  background: url(&amp;#39;background.png&amp;#39;) #0F0027;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+body {
+  color: white;
+}
+
+h1 {
+  color: #ef007e;
+}
+
+a {
+  color: #ff8700
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Even with just these few rules we’re already kind of close!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://iplusfour.netlify.com/img/first_css_pass.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Let’s move the slide numbers to the top right and make them orange. Still working in &lt;code&gt;mytemplate.css&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;.remark-slide-number {
+ position: absolute;
+ top: 1em;
+ right: 1em;
+ color: #ff8700;
+ opacity: 1;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To change the format to just show the current slide number, we have to edit the YAML header at the top of our presentation:&lt;/p&gt;
+&lt;pre class=&#34;yaml&#34;&gt;&lt;code&gt;nature:
+  slideNumberFormat: &amp;quot;%current%&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And re-knit to see the change, since we changed the Rmd.&lt;/p&gt;
+&lt;p&gt;That should get you started with CSS. Let’s clean up the title slide and wrap up this blog post.&lt;/p&gt;
+&lt;p&gt;Again, I took a screenshot of the title slide background and saved it as &lt;code&gt;title_bg.png&lt;/code&gt; in the presentation folder. Then we just need to set some styles on the title:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;.title-slide {
+  background: url(&amp;#39;title_bg.png&amp;#39;) #0F0027;
+  background-size: contain;
+}
+
+.title-slide h1, .title-slide h2, .title-slide h3 {
+  font-weight: 100;
+  color: #ef007e;
+}
+
+.title-slide h1 {
+  font-size: 5rem;
+}
+
+.title-slide .remark-slide-number {
+  display: none;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://iplusfour.netlify.com/img/title_slide_themed.png&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;wrapping-up&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Wrapping up&lt;/h2&gt;
+&lt;p&gt;Once you’re happy with the look, copy the images, &lt;code&gt;mytemplate.css&lt;/code&gt; and &lt;code&gt;myfonts.css&lt;/code&gt; files into their counterparts within the package we created at the beginning. You might also want to overwrite the content of &lt;code&gt;skeleton.Rmd&lt;/code&gt; with any changes made, like the slide number formatting.&lt;/p&gt;
+&lt;p&gt;You’ll also need to reinstall the package every time you update it.&lt;/p&gt;
+&lt;p&gt;Whew, we made it! That ended up being kind of wordy, but it’s really not too challenging. Give it a try, and tweet me &lt;span class=&#34;citation&#34;&gt;@iplusfour&lt;/span&gt; if you have any issues.&lt;/p&gt;
+&lt;p&gt;Once you’re happy with the template, make sure to version control your package! You can easily add more Rmarkdown templates to the same package by creating new directories under &lt;code&gt;/inst/rmarkdown/templates&lt;/code&gt;. I have some for detailed team reports, summary documents, etc.&lt;/p&gt;
+&lt;p&gt;Stay awesome!&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>COWS! #TidyTuesday</title>
+      <link>https://iplusfour.netlify.com/post/cows-tidytuesday/</link>
+      <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/cows-tidytuesday/</guid>
+      <description>
+
+
+&lt;p&gt;In &lt;a href=&#34;https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-01-29&#34;&gt;this week’s #TidyTuesday&lt;/a&gt; screencast I explore some &lt;strong&gt;cow facts&lt;/strong&gt;, using the &lt;code&gt;emojifont&lt;/code&gt; package for custom symbols as plot points.&lt;/p&gt;
+&lt;iframe width=&#34;853&#34; height=&#34;480&#34; src=&#34;https://www.youtube.com/embed/QFg8uDeh5-A&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;
+&lt;/iframe&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Quick guide to setting up OBS studio</title>
+      <link>https://iplusfour.netlify.com/post/quick-guide-to-setting-up-obs-studio/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/quick-guide-to-setting-up-obs-studio/</guid>
+      <description>
+
+
+&lt;p&gt;I got a little bit of interest in yesterday’s screencast for #TidyTuesday, so today I thought I’d give a simple guide to recording those screencasts with OBS studio.&lt;/p&gt;
+&lt;p&gt;The text instructions are below and here’s a short video if you’re a visual learner.&lt;/p&gt;
+&lt;iframe width=&#34;853&#34; height=&#34;480&#34; src=&#34;https://www.youtube.com/embed/OihrGzv3d2g&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;
+&lt;/iframe&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;a href=&#34;https://obsproject.com&#34;&gt;Download and install&lt;/a&gt; the software&lt;/li&gt;
+&lt;li&gt;In the lower left of the window under &lt;code&gt;scenes&lt;/code&gt;, click &lt;code&gt;+&lt;/code&gt; and create a new scene called &lt;code&gt;screencasts&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Under &lt;code&gt;sources&lt;/code&gt;, click &lt;code&gt;+&lt;/code&gt; and add a &lt;code&gt;Display Capture&lt;/code&gt;. Make sure you can see the monitor you want to capture in the preview.&lt;/li&gt;
+&lt;li&gt;(Optional) Click &lt;code&gt;+&lt;/code&gt; in &lt;code&gt;sources&lt;/code&gt; again and add a &lt;code&gt;Video Capture Device&lt;/code&gt; to include your webcam. The video window can be resized and moved with the mouse.&lt;/li&gt;
+&lt;li&gt;Do a mic test and make sure you see audio levels in the &lt;code&gt;mixer&lt;/code&gt;. If not, click the gear and select/set up the microphone&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;Start Recording&lt;/code&gt; and go for it!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The videos will go to your default video folder (C:/Users/username/Videos on Win10).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>My first TidyTuesday &amp; screencast!</title>
+      <link>https://iplusfour.netlify.com/post/my-first-tidytuesday-screencast/</link>
+      <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/my-first-tidytuesday-screencast/</guid>
+      <description>
+
+
+&lt;p&gt;Like they say, long journeys start with a single step. This is my first time looking at a &lt;a href=&#34;https://thomasmock.netlify.com/post/tidytuesday-a-weekly-social-data-project-in-r/&#34;&gt;#TidyTuesday&lt;/a&gt; dataset and my first time doing an R screencast.&lt;/p&gt;
+&lt;p&gt;This week’s data is on incarceration in the US, and in just a short exploration I find some interesting features.&lt;/p&gt;
+&lt;iframe width=&#34;560&#34; height=&#34;315&#34; src=&#34;https://www.youtube.com/embed/hY5GiFK3kPw&#34; frameborder=&#34;0&#34; allow=&#34;accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture&#34; allowfullscreen&gt;
+&lt;/iframe&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using rmarkdown parameters to set title, author, and date</title>
+      <link>https://iplusfour.netlify.com/post/using-rmarkdown-parameters-to-set-title-author-and-date/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/using-rmarkdown-parameters-to-set-title-author-and-date/</guid>
+      <description>
+
+
+&lt;p&gt;Another quick tip today. I’m taking a look at a bunch of my Rmarkdown documents for places I can employ &lt;a href=&#34;https://bookdown.org/yihui/rmarkdown/parameterized-reports.html&#34;&gt;parameters&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For reports and other templates, you might want to parameterize the YAML header that defines the title, author, date, etc. Turns out this is more straightforward than I guessed. You just need to define the parameters near the top of the YAML, then assign them to the appropriate elements later on.&lt;/p&gt;
+&lt;p&gt;Here’s an example header for a &lt;a href=&#34;https://bookdown.org/yihui/rmarkdown/xaringan.html&#34;&gt;Xaringan&lt;/a&gt; slide deck:&lt;/p&gt;
+&lt;pre class=&#34;yaml&#34;&gt;&lt;code&gt;---
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      ratio: &amp;#39;16:10&amp;#39;
+      highlightStyle: solarized-light
+      highlightLines: true
+      countIncrementalSlides: false
+params:
+  title: &amp;quot;&amp;quot;
+  subtitle: &amp;quot;&amp;quot;
+  author: &amp;quot;Jason Winget&amp;quot;
+  date: &amp;quot;`r Sys.Date()`&amp;quot;
+
+title: &amp;quot;`r params$title`&amp;quot;
+subtitle: &amp;quot;`r params$subtitle`&amp;quot;
+author: &amp;quot;`r params$author`&amp;quot;
+date: &amp;quot;`r params$date`&amp;quot;
+---&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;When you use &lt;code&gt;knit_with_parameters()&lt;/code&gt; to compile this document, it will pop up a shiny window where you can enter the values for this report.&lt;/p&gt;
+&lt;p&gt;Even if you don’t change these too much, using parameters like this can be useful for a common template file or automating report generation.&lt;/p&gt;
+&lt;p&gt;Be awesome today!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How to write a data frame to excel without row names in R?</title>
+      <link>https://iplusfour.netlify.com/post/how-to-write-a-data-frame-to-excel-without-row-names/</link>
+      <pubDate>Thu, 24 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/how-to-write-a-data-frame-to-excel-without-row-names/</guid>
+      <description>
+
+
+&lt;p&gt;Got a question today about how to write a data frame to Excel without rownames. Seasoned R vets probably don’t even blink at this, but it’s the type of thing that I think a lot of new users struggle to overcome.&lt;/p&gt;
+&lt;p&gt;Anyhow, here are my quick and simple solutions:&lt;/p&gt;
+&lt;p&gt;The easiest is to write this to a CSV file, which will open in excel. You can use the following code to do this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Install/load the readr package
+if(!require(readr)){
+    install.packages(&amp;quot;readr&amp;quot;)
+    library(readr)
+}
+
+# Write out the file
+write_csv(my.data.frame, “mytable.csv”)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Once again the &lt;code&gt;tidyverse&lt;/code&gt; comes to the rescue. &lt;code&gt;write_csv&lt;/code&gt; from the readr package never writes row names to the output file!&lt;/p&gt;
+&lt;p&gt;Alternatively you could write directly to an excel document using &lt;code&gt;XLConnect&lt;/code&gt;. This code would look more like the following:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Install/load the XLConnect package
+if(!require(XLConnect)){
+    install.packages(&amp;quot;XLConnect &amp;quot;)
+    library(XLConnect)
+}
+
+# Create an output workbook
+wb &amp;lt;- loadWorkbook(“myfile.xlsx”, create=TRUE)
+
+# Create a sheet named results in the new workbook
+createSheet(wb, ‘results’)
+
+# Write your table to the sheet
+writeWorksheet(wb, my.data.frame, ‘results’)
+
+# Save the file
+saveWorkbook(wb)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There you have it, pretty easy once you know the tools. Keep being awesome!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Barplots in the style of Tufte</title>
+      <link>https://iplusfour.netlify.com/post/barplots-in-the-style-of-tufte/</link>
+      <pubDate>Sat, 19 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/barplots-in-the-style-of-tufte/</guid>
+      <description>
+
+
+&lt;p&gt;Lately I’ve been referencing the classic Tufte book &lt;a href=&#34;https://www.edwardtufte.com/tufte/books_vdqi&#34;&gt;The Visual Display of Quantitative Information&lt;/a&gt;. I don’t agree with &lt;em&gt;everything&lt;/em&gt; tufte has to say, but some of his advice is fantastic.&lt;/p&gt;
+&lt;p&gt;People who consume my results like bar charts, likely because they’re familiar from Excel. I’ve been working on some ggplot2 settings that generate beautiful barplots.&lt;/p&gt;
+&lt;p&gt;Here it is:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+library(viridisLite)
+library(dplyr)
+
+iris %&amp;gt;%
+  group_by(Species) %&amp;gt;%
+  summarize(mean.Sepal.Length = mean(Sepal.Length)) %&amp;gt;%
+  ggplot(aes(x=Species, y=mean.Sepal.Length, fill=Species)) + geom_col() + 
+  theme(panel.background = element_rect(fill = NA),
+  panel.ontop = TRUE
+) + scale_x_discrete(breaks = NULL) + scale_fill_viridis_d()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://iplusfour.netlify.com/post/2019-01-19-barplots-in-the-style-of-tufte_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;By unsetting the &lt;code&gt;panel.background&lt;/code&gt; and adding the &lt;code&gt;panel.ontop&lt;/code&gt; arguments in the &lt;code&gt;theme&lt;/code&gt;, you get a very clean chart with white lines indicating the bar heights.&lt;/p&gt;
+&lt;p&gt;I also only recently learned about the &lt;code&gt;geom_col&lt;/code&gt; geom in ggplot2 which is like &lt;code&gt;geom_bar(stat=&#34;identity&#34;)&lt;/code&gt; but nicer looking :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Don&#39;t call it a comeback</title>
+      <link>https://iplusfour.netlify.com/post/don-t-call-it-a-comeback/</link>
+      <pubDate>Sat, 19 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/don-t-call-it-a-comeback/</guid>
+      <description>
+
+
+&lt;p&gt;Inspired by the excellent keynote by &lt;span class=&#34;citation&#34;&gt;[@drob]&lt;/span&gt;(&lt;a href=&#34;https://twitter.com/drob&#34; class=&#34;uri&#34;&gt;https://twitter.com/drob&lt;/a&gt;) at rstudio::conf 2019, I’m resurrecting my long-dead blog.&lt;/p&gt;
+&lt;p&gt;Since I work mainly in &lt;code&gt;R&lt;/code&gt; these days, I’ll be sharing useful code snippets, some #TidyTuesday exercises, and probably some other random thoughts along the way.&lt;/p&gt;
+&lt;p&gt;One thing I learned from rstudio::conf is that no &lt;code&gt;R&lt;/code&gt; material is complete without an &lt;code&gt;mtcars&lt;/code&gt; graph, so here you go:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+ggplot(mtcars, aes(x=disp, y=mpg)) + geom_point()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://iplusfour.netlify.com/post/2019-01-19-don-t-call-it-a-comeback_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Example Page</title>
+      <link>https://iplusfour.netlify.com/tutorial/example/</link>
+      <pubDate>Sun, 09 Sep 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/tutorial/example/</guid>
+      <description>
+
+&lt;p&gt;In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:&lt;/p&gt;
+
+&lt;h2 id=&#34;tip-1&#34;&gt;Tip 1&lt;/h2&gt;
+
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+
+&lt;h2 id=&#34;tip-2&#34;&gt;Tip 2&lt;/h2&gt;
+
+&lt;p&gt;&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Example Talk</title>
+      <link>https://iplusfour.netlify.com/talk/example/</link>
+      <pubDate>Sun, 01 Jan 2017 00:00:00 -0500</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/talk/example/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    &lt;p&gt;Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;p&gt;Slides can be added in a few ways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Create&lt;/strong&gt; slides using Academic&amp;rsquo;s &lt;em&gt;Slides&lt;/em&gt; feature and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upload&lt;/strong&gt; an existing slide deck to &lt;code&gt;static/&lt;/code&gt; and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embed&lt;/strong&gt; your slides (e.g. Google Slides) or presentation video on this page using &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;shortcodes&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Further talk details can easily be added to this page using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>External Project</title>
+      <link>https://iplusfour.netlify.com/project/external-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0400</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/project/external-project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Internal Project</title>
+      <link>https://iplusfour.netlify.com/project/internal-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0400</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/project/internal-project/</guid>
+      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A Person Re-Identification System For Mobile Devices</title>
+      <link>https://iplusfour.netlify.com/publication/person-re-id/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 -0400</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/publication/person-re-id/</guid>
+      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Mobile visual clothing search</title>
+      <link>https://iplusfour.netlify.com/publication/clothing-search/</link>
+      <pubDate>Mon, 01 Jul 2013 00:00:00 -0400</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/publication/clothing-search/</guid>
+      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

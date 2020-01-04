@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on iplusfour</title>
+    <link>https://iplusfour.netlify.com/post/</link>
+    <description>Recent content in Posts on iplusfour</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; Jason Winget 2019</copyright>
+    <lastBuildDate>Sun, 01 Jan 2017 00:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="https://iplusfour.netlify.com/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>RadventcalendaR - Just a bit late</title>
+      <link>https://iplusfour.netlify.com/post/radventcalendar-just-a-bit-late/</link>
+      <pubDate>Fri, 03 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/radventcalendar-just-a-bit-late/</guid>
+      <description>In early December I came across an R advent calendar for new users that was created by @KiirstiO, and decided it would be nice to do fairly short videos where I worked through the exercises in case folks got stuck.
+Obviously the calendar is over now, but I think it&amp;rsquo;s still a nice, gentle introduction to R for anyone who might be new. Check out the source materials above, and my YouTube playlist can be found here</description>
+    </item>
+    
+    <item>
+      <title>Reproducing PowerPoint templates in Xaringan</title>
+      <link>https://iplusfour.netlify.com/post/reproducing-powerpoint-templates-in-xaringan/</link>
+      <pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/reproducing-powerpoint-templates-in-xaringan/</guid>
+      <description>I recently read this tweet from @apreshill that linked to some slides by datalorax covering how to make custom themes for Xaringan, my favorite Rmarkdown presentation package. They’re really good slides and I highly recommend flipping through them.
+@datalorax even has a package in development called slidex that converts the content of a PowerPoint to Rmarkdown, but what about the theme? I don’t have a magic package to solve this issue, but I thought I’d outline some steps I use to re-create PowerPoint themes in Xaringan.</description>
+    </item>
+    
+    <item>
+      <title>COWS! #TidyTuesday</title>
+      <link>https://iplusfour.netlify.com/post/cows-tidytuesday/</link>
+      <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/cows-tidytuesday/</guid>
+      <description>In this week’s #TidyTuesday screencast I explore some cow facts, using the emojifont package for custom symbols as plot points.
+</description>
+    </item>
+    
+    <item>
+      <title>Quick guide to setting up OBS studio</title>
+      <link>https://iplusfour.netlify.com/post/quick-guide-to-setting-up-obs-studio/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/quick-guide-to-setting-up-obs-studio/</guid>
+      <description>I got a little bit of interest in yesterday’s screencast for #TidyTuesday, so today I thought I’d give a simple guide to recording those screencasts with OBS studio.
+The text instructions are below and here’s a short video if you’re a visual learner.
+Download and install the softwareIn the lower left of the window under scenes, click + and create a new scene called screencastsUnder sources, click + and add a Display Capture.</description>
+    </item>
+    
+    <item>
+      <title>My first TidyTuesday &amp; screencast!</title>
+      <link>https://iplusfour.netlify.com/post/my-first-tidytuesday-screencast/</link>
+      <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/my-first-tidytuesday-screencast/</guid>
+      <description>Like they say, long journeys start with a single step. This is my first time looking at a #TidyTuesday dataset and my first time doing an R screencast.
+This week’s data is on incarceration in the US, and in just a short exploration I find some interesting features.
+</description>
+    </item>
+    
+    <item>
+      <title>Using rmarkdown parameters to set title, author, and date</title>
+      <link>https://iplusfour.netlify.com/post/using-rmarkdown-parameters-to-set-title-author-and-date/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/using-rmarkdown-parameters-to-set-title-author-and-date/</guid>
+      <description>Another quick tip today. I’m taking a look at a bunch of my Rmarkdown documents for places I can employ parameters.
+For reports and other templates, you might want to parameterize the YAML header that defines the title, author, date, etc. Turns out this is more straightforward than I guessed. You just need to define the parameters near the top of the YAML, then assign them to the appropriate elements later on.</description>
+    </item>
+    
+    <item>
+      <title>How to write a data frame to excel without row names in R?</title>
+      <link>https://iplusfour.netlify.com/post/how-to-write-a-data-frame-to-excel-without-row-names/</link>
+      <pubDate>Thu, 24 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/how-to-write-a-data-frame-to-excel-without-row-names/</guid>
+      <description>Got a question today about how to write a data frame to Excel without rownames. Seasoned R vets probably don’t even blink at this, but it’s the type of thing that I think a lot of new users struggle to overcome.
+Anyhow, here are my quick and simple solutions:
+The easiest is to write this to a CSV file, which will open in excel. You can use the following code to do this:</description>
+    </item>
+    
+    <item>
+      <title>Barplots in the style of Tufte</title>
+      <link>https://iplusfour.netlify.com/post/barplots-in-the-style-of-tufte/</link>
+      <pubDate>Sat, 19 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/barplots-in-the-style-of-tufte/</guid>
+      <description>Lately I’ve been referencing the classic Tufte book The Visual Display of Quantitative Information. I don’t agree with everything tufte has to say, but some of his advice is fantastic.
+People who consume my results like bar charts, likely because they’re familiar from Excel. I’ve been working on some ggplot2 settings that generate beautiful barplots.
+Here it is:
+library(ggplot2)library(viridisLite)library(dplyr)iris %&amp;gt;%group_by(Species) %&amp;gt;%summarize(mean.Sepal.Length = mean(Sepal.Length)) %&amp;gt;%ggplot(aes(x=Species, y=mean.</description>
+    </item>
+    
+    <item>
+      <title>Don&#39;t call it a comeback</title>
+      <link>https://iplusfour.netlify.com/post/don-t-call-it-a-comeback/</link>
+      <pubDate>Sat, 19 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/don-t-call-it-a-comeback/</guid>
+      <description>Inspired by the excellent keynote by [@drob](https://twitter.com/drob) at rstudio::conf 2019, I’m resurrecting my long-dead blog.
+Since I work mainly in R these days, I’ll be sharing useful code snippets, some #TidyTuesday exercises, and probably some other random thoughts along the way.
+One thing I learned from rstudio::conf is that no R material is complete without an mtcars graph, so here you go:
+library(ggplot2)ggplot(mtcars, aes(x=disp, y=mpg)) + geom_point()</description>
+    </item>
+    
+  </channel>
+</rss>

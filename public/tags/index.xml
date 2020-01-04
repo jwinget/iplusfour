@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on iplusfour</title>
+    <link>https://iplusfour.netlify.com/tags/</link>
+    <description>Recent content in Tags on iplusfour</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; Jason Winget 2019</copyright>
+    <lastBuildDate>Wed, 27 Apr 2016 00:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://iplusfour.netlify.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Deep Learning</title>
+      <link>https://iplusfour.netlify.com/tags/deep-learning/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0400</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/tags/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Demo</title>
+      <link>https://iplusfour.netlify.com/tags/demo/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 -0400</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/tags/demo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tufte</title>
+      <link>https://iplusfour.netlify.com/tags/tufte/</link>
+      <pubDate>Sat, 19 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/tags/tufte/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>excel</title>
+      <link>https://iplusfour.netlify.com/tags/excel/</link>
+      <pubDate>Thu, 24 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/tags/excel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ggplot2</title>
+      <link>https://iplusfour.netlify.com/tags/ggplot2/</link>
+      <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/tags/ggplot2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>parameterization</title>
+      <link>https://iplusfour.netlify.com/tags/parameterization/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/tags/parameterization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reusable code</title>
+      <link>https://iplusfour.netlify.com/tags/reusable-code/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/tags/reusable-code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidy data</title>
+      <link>https://iplusfour.netlify.com/tags/tidy-data/</link>
+      <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/tags/tidy-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>xaringan</title>
+      <link>https://iplusfour.netlify.com/tags/xaringan/</link>
+      <pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/tags/xaringan/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

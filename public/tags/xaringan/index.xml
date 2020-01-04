@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>xaringan on iplusfour</title>
+    <link>https://iplusfour.netlify.com/tags/xaringan/</link>
+    <description>Recent content in xaringan on iplusfour</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; Jason Winget 2019</copyright>
+    <lastBuildDate>Thu, 31 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://iplusfour.netlify.com/tags/xaringan/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Reproducing PowerPoint templates in Xaringan</title>
+      <link>https://iplusfour.netlify.com/post/reproducing-powerpoint-templates-in-xaringan/</link>
+      <pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/reproducing-powerpoint-templates-in-xaringan/</guid>
+      <description>I recently read this tweet from @apreshill that linked to some slides by datalorax covering how to make custom themes for Xaringan, my favorite Rmarkdown presentation package. They’re really good slides and I highly recommend flipping through them.
+@datalorax even has a package in development called slidex that converts the content of a PowerPoint to Rmarkdown, but what about the theme? I don’t have a magic package to solve this issue, but I thought I’d outline some steps I use to re-create PowerPoint themes in Xaringan.</description>
+    </item>
+    
+  </channel>
+</rss>

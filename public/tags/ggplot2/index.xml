@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ggplot2 on iplusfour</title>
+    <link>https://iplusfour.netlify.com/tags/ggplot2/</link>
+    <description>Recent content in ggplot2 on iplusfour</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; Jason Winget 2019</copyright>
+    <lastBuildDate>Mon, 28 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://iplusfour.netlify.com/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>COWS! #TidyTuesday</title>
+      <link>https://iplusfour.netlify.com/post/cows-tidytuesday/</link>
+      <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/cows-tidytuesday/</guid>
+      <description>In this week’s #TidyTuesday screencast I explore some cow facts, using the emojifont package for custom symbols as plot points.
+</description>
+    </item>
+    
+    <item>
+      <title>My first TidyTuesday &amp; screencast!</title>
+      <link>https://iplusfour.netlify.com/post/my-first-tidytuesday-screencast/</link>
+      <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/my-first-tidytuesday-screencast/</guid>
+      <description>Like they say, long journeys start with a single step. This is my first time looking at a #TidyTuesday dataset and my first time doing an R screencast.
+This week’s data is on incarceration in the US, and in just a short exploration I find some interesting features.
+</description>
+    </item>
+    
+    <item>
+      <title>Barplots in the style of Tufte</title>
+      <link>https://iplusfour.netlify.com/post/barplots-in-the-style-of-tufte/</link>
+      <pubDate>Sat, 19 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/barplots-in-the-style-of-tufte/</guid>
+      <description>Lately I’ve been referencing the classic Tufte book The Visual Display of Quantitative Information. I don’t agree with everything tufte has to say, but some of his advice is fantastic.
+People who consume my results like bar charts, likely because they’re familiar from Excel. I’ve been working on some ggplot2 settings that generate beautiful barplots.
+Here it is:
+library(ggplot2)library(viridisLite)library(dplyr)iris %&amp;gt;%group_by(Species) %&amp;gt;%summarize(mean.Sepal.Length = mean(Sepal.Length)) %&amp;gt;%ggplot(aes(x=Species, y=mean.</description>
+    </item>
+    
+  </channel>
+</rss>

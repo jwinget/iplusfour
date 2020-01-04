@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rmarkdown on iplusfour</title>
+    <link>https://iplusfour.netlify.com/categories/rmarkdown/</link>
+    <description>Recent content in Rmarkdown on iplusfour</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; Jason Winget 2019</copyright>
+    <lastBuildDate>Thu, 31 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://iplusfour.netlify.com/categories/rmarkdown/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Reproducing PowerPoint templates in Xaringan</title>
+      <link>https://iplusfour.netlify.com/post/reproducing-powerpoint-templates-in-xaringan/</link>
+      <pubDate>Thu, 31 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/reproducing-powerpoint-templates-in-xaringan/</guid>
+      <description>I recently read this tweet from @apreshill that linked to some slides by datalorax covering how to make custom themes for Xaringan, my favorite Rmarkdown presentation package. They’re really good slides and I highly recommend flipping through them.
+@datalorax even has a package in development called slidex that converts the content of a PowerPoint to Rmarkdown, but what about the theme? I don’t have a magic package to solve this issue, but I thought I’d outline some steps I use to re-create PowerPoint themes in Xaringan.</description>
+    </item>
+    
+    <item>
+      <title>Using rmarkdown parameters to set title, author, and date</title>
+      <link>https://iplusfour.netlify.com/post/using-rmarkdown-parameters-to-set-title-author-and-date/</link>
+      <pubDate>Fri, 25 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/using-rmarkdown-parameters-to-set-title-author-and-date/</guid>
+      <description>Another quick tip today. I’m taking a look at a bunch of my Rmarkdown documents for places I can employ parameters.
+For reports and other templates, you might want to parameterize the YAML header that defines the title, author, date, etc. Turns out this is more straightforward than I guessed. You just need to define the parameters near the top of the YAML, then assign them to the appropriate elements later on.</description>
+    </item>
+    
+  </channel>
+</rss>

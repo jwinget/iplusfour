@@ -90,7 +90,8 @@ remotes::install_local(pkgpath)</code></pre>
 <pre class="r"><code>@import url(&#39;https://fonts.googleapis.com/css?family=Abel&#39;);
 body { font-family: &#39;Abel&#39;, sans-serif; }</code></pre>
 <p>Save the file and refresh the slides in the browser. You should see that the fonts have all changed to Abel! One cool thing about CSS changes is that we don’t have to re-knit to see them. If you don’t see Abel fonts, make sure you’re connected to the internet and that you added the lines to the right <code>myfonts.css</code> file.</p>
-<p>OK, now let’s really get into it by working on <code>mytemplate.css</code>. One thing that helps <strong>a lot</strong> here is the <code>inspect</code> feature in Google Chrome. Press <kbd>Ctrl+Shift+I</kbd> in your browser to pull up this window. You can hover over the HTML to see where the display comes from.</p>
+<p>OK, now let’s really get into it by working on <code>mytemplate.css</code>.
+One thing that helps <strong>a lot</strong> here is the <code>inspect</code> feature in Google Chrome. Press <kbd>Ctrl+Shift+I</kbd> in your browser to pull up this window. You can hover over the HTML to see where the display comes from.</p>
 <p>First let’s fix the text and background image/colors. First I used a screenshot (<kbd>Prt Scr</kbd>) and Paint to get a clean version of the background image. I saved this in the presentation folder as <code>background.png</code>. You might be able to save this straight out of your template. Next we edit <code>mytemplate.css</code>.</p>
 <p>I also used the color selector in <a href="https://www.gimp.org">GIMP</a> to get the primary dark purple background color</p>
 <pre class="r"><code>.remark-slide-content {
@@ -112,10 +113,7 @@ a {
   color: #ff8700
 }</code></pre>
 <p>Even with just these few rules we’re already kind of close!</p>
-<div class="figure">
-<img src="/img/first_css_pass.png" />
-
-</div>
+<p><img src="/img/first_css_pass.png" /></p>
 <p>Let’s move the slide numbers to the top right and make them orange. Still working in <code>mytemplate.css</code>:</p>
 <pre class="r"><code>.remark-slide-number {
  position: absolute;
@@ -147,10 +145,7 @@ a {
 .title-slide .remark-slide-number {
   display: none;
 }</code></pre>
-<div class="figure">
-<img src="/img/title_slide_themed.png" />
-
-</div>
+<p><img src="/img/title_slide_themed.png" /></p>
 </div>
 <div id="wrapping-up" class="section level2">
 <h2>Wrapping up</h2>

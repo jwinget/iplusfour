@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>excel on iplusfour</title>
+    <link>https://iplusfour.netlify.com/tags/excel/</link>
+    <description>Recent content in excel on iplusfour</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; Jason Winget 2019</copyright>
+    <lastBuildDate>Thu, 24 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://iplusfour.netlify.com/tags/excel/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How to write a data frame to excel without row names in R?</title>
+      <link>https://iplusfour.netlify.com/post/how-to-write-a-data-frame-to-excel-without-row-names/</link>
+      <pubDate>Thu, 24 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://iplusfour.netlify.com/post/how-to-write-a-data-frame-to-excel-without-row-names/</guid>
+      <description>Got a question today about how to write a data frame to Excel without rownames. Seasoned R vets probably don’t even blink at this, but it’s the type of thing that I think a lot of new users struggle to overcome.
+Anyhow, here are my quick and simple solutions:
+The easiest is to write this to a CSV file, which will open in excel. You can use the following code to do this:</description>
+    </item>
+    
+  </channel>
+</rss>
